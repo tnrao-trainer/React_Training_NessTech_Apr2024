@@ -1,0 +1,20 @@
+1.  Complete the Day-1 assignements. 
+
+
+2.   Create a react component to implement following requirement:
+		a.  Create EmpList component that accepts job as property
+		b.  Filter the data based on the job and display in table format
+		c.  Employee data includes :   empno, ename, job, salary, deptno, 
+		
+		Hint : DO NOT required child component for this. 
+
+3. Study the following items :
+		a.  Why do we use useContext() hook?
+		b.  What is JSON Server and Why do we use JSON Server?
+		c.   What XmlHttpRequest Object in JavaScrpt? Why do we use it?
+		
+		
+		
+		
+
+		
