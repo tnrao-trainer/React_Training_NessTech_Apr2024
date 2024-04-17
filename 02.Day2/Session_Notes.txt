@@ -1,0 +1,189 @@
+
+Class  Vs  Functional Components
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Class Component:		
+		a.  ES6 OOPs concepts
+		b. Stateful components
+		c. Life cycle  methods
+		
+2.   Functional Component:
+		a. Used for only Presentation
+		b. Stateless components
+		c.  Light weight 
+		d.  No state management 
+			
+		
+
+
+----------------------------------------------------------------------------------
+
+
+
+function App() { 
+		
+		// invokes the hooks
+		// logic 
+		
+		//  code blocks  :    if  / for / inner function  /
+
+  return (
+    <div> </div>
+	<p> </p>
+  );
+}
+
+
+
+
+
+
+
+
+Functional Components
+~~~~~~~~~~~~~~~~~~~~
+--> Name of the component should be starts with capital letter
+--> Returns the ui logic  (similar content in render method of class component).
+
+-->  Components should return UI, that  UI  code must have one parent element
+
+function App() { 
+  return (  
+		<div>
+			  <div> </div>
+				<p> </p>
+		</div>  
+  );
+}
+
+export default App;
+-----------------------------------------------------------------------------
+
+
+React Fragments
+~~~~~~~~~~~~~~
+
+	<div> 
+        <h1>Welcome to functional components</h1>
+        <p>This is test paragraph. This is test paragraph.This is test paragraph.This is test paragraph.This is test paragraph.This is test paragraph.This is test paragraph. </p>
+    </div>   
+	
+
+ <React.Fragment> 
+        <h1>Welcome to functional components</h1>
+        <p>This is test paragraph. This is test paragraph.This is test paragraph.This is test paragraph.This is test paragraph.This is test paragraph.This is test paragraph. </p>
+   </React.Fragment>   
+	
+	
+	
+	Short-cut version of React Fragment:
+	
+	 <> 
+        <h1>Welcome to functional components</h1>
+        <p>This is test paragraph. This is test paragraph.This is test paragraph.This is test paragraph.This is test paragraph.This is test paragraph.This is test paragraph. </p>
+    </>   
+	
+	
+-------------------------------------------------------------------------------
+
+
+Array declaration 
+		let ar = [];	
+		let  numbers = [10,20,30];
+		
+		let x = numbers[0];	
+		let y = numbers[1];	
+		let z = numbers[2];	
+		
+Array de-structuring
+		let  [x,y,z]	  =  numbers;
+		
+Object  de-structuring		
+	   let obj = {empno : 10256,  ename : "Scott"};
+		let  {empo, ename}  =  obj;	
+		
+	
+		
+		
+		
+		
+		
+		
+	--------------------------------------------------------------------------
+	
+	
+	
+	
+			<input onChange={function_name} type="text" />
+			
+			<input onChange={   (e) =>  {  setUname(e.target.value)  } } type="text" />
+			<input onChange={   (e) =>  {  setPassword(e.target.value)  } } type="text" />
+	
+	
+	
+	
+Usage of style attribute in JSX
+~~~~~~~~~~~~~~~~~~~~~~~~~	
+	
+<tag   style={  {prop:value}  }>	
+<p   style={  {color:"blue"}  }>	
+<p   style={  {color:"blue", width : "100px"}  }>	
+<p   style={  {color:"blue", width : "100px",  text-align : "center"}  }>	 -- wrong
+<p   style={  {color:"blue", width : "100px",  textAlign : "center"}  }>	 -- correct
+<p   style={  {color:"blue", backgroundColor : "Yellow",  textAlign : "center"}  }>	 -- correct
+	
+	
+JSX syntax to apply css classes:
+	
+<p   className="c1"> 	
+<p   className="title"> 	
+	
+	
+	
+	
+	-----------------------------------------------------
+	
+	
+	DeptList :		parent component 
+							holds the dept array --- array of objects
+							uses  <DeptDetails />
+							
+							
+   DeptDetails :		child component 
+								accepts deptObj as a property 
+								display the given dept details 
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+Side Effects of useState
+~~~~~~~~~~~~~~~~~~~~
+	
+--> Updates in state variables --->     re-render the UI 
+--> Functional component --- executed every time 
+--> Code snippets that you want to execute component loading can be handled using useEffect() hook 
+
+
+---------------------------------------------------------------
+
+
+
+
+1.   Inline
+2.   Component Level 
+3.   Project/Application Level 
+4.   3rd party libs. 
+
+	
+
+
