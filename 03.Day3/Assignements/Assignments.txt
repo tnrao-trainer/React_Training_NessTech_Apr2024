@@ -1,0 +1,13 @@
+1. Create a react component to display the user details by using below url (refer the shared image for design):			   
+		https://reqres.in/api/users/
+		
+2.   Create a react component to perform CRUD operations on products data
+
+		required properties:   id, name, quantity, category, unitprice
+		Hint :  Use Node-Express API / JSON Server / etc... 
+	
+3.  Study the following items:
+		a.   How to sent authentication token in axios request?
+
+				
+			
