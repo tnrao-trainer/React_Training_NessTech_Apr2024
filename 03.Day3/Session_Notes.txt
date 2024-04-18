@@ -1,0 +1,245 @@
+AJAX Calls in React JS Applications
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+AJAX --  Asynchronous JavaScript And Xml
+JSON -- JavaScript Object Notation 
+
+
+
+AJAX implementation in Client side Tech. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	1.  XmlHttpRequest		---		 JavaScript
+	2.  window.fetch			---		JavaScript
+	3.  $.ajax()						---		jQuery
+	4.  HttpClient class 	----			@angular/common/http  		----  Angular
+	5.  axios    ---  3rd package 	---   React 
+	
+------------------------------------------------------------------------------------------
+
+1.  Installation 
+		npm  i  axios   --save 
+
+
+2. Import  axios 
+		import  axios  from  'axios';
+
+
+
+let url = "https://www.w3schools.com/angular/customers.php";
+
+let  promiseObj  = axios.get(url);	
+	   promiseObj.then(callback);
+		
+		
+		axios.get(url).then(callback);
+	
+	-->  get()  ----  returns promise object 
+
+
+GET	
+POST
+PUT
+DELETE 
+
+
+{ 
+	"records" :  
+			 [ 
+				{"Name":"Alfreds Futterkiste","City":"Berlin","Country":"Germany"},
+				{"Name":"Ana Trujillo Emparedados y helados","City":"México D.F.","Country":"Mexico"}, 
+				{"Name":"Antonio Moreno Taquería","City":"México D.F.","Country":"Mexico"}, 
+			] 
+}
+-----------------------------------------------------------------------------------------------------------------
+
+
+
+Configure JSON Server
+~~~~~~~~~~~~~~~~~~~~
+
+1.  Create JSON File
+	
+		>		npm    install   -g   json-server@0.17.4
+	
+2.  Create the json as follows:  	
+		
+	File Name :  	db_depts.json 
+		
+{
+  "depts": [
+    {
+      "deptno": 10,
+      "dname": "Accounts",
+      "loc": "Hyderabad"
+    },
+    {
+      "deptno": "30",
+      "dname": "Marketing",
+      "loc": "Mumbai"
+    }
+	]
+}
+	
+3.  Start the JSON Server
+
+		json-server  --watch   db_depts.json   					// default port number 3000
+		json-server  --watch   --port  3500    db_depts.json   
+		json-server  --watch  --id  detpno  --port  3500    db_depts.json   
+
+4.  React Component
+
+		a.  Import axios 
+		b.  Implement ajax calls using axios methods
+		
+		
+	
+	
+	
+
+		
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	1.   Db operations:   CRUD Operations
+	2.   using  Services (resuable code in react components)  
+	3.   Server  :     Node - Express JS
+	4.   Database  :  MongoDb
+	5.   Client :  React JS
+-----------------------------------------------------------------------------------------------	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+ 
+
+
+
+deptService.getAllDepts().then( (resData) => {             
+            setDepts(resData.data);
+});
+
+
+
+// how to handle errors in ajax calls 
+ deptService.getDeptById(dno).then( 
+          resData => 
+          {
+            let deptObj = resData.data;        
+            setDeptno(deptObj.Deptno);
+            setDname(deptObj.Dname);
+            setLoc(deptObj.Loc);
+          })
+          .catch((error) => {
+              alert(error);
+              console.log(error);
+          });
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------
+
+Configure JSON Server
+~~~~~~~~~~~~~~~~~~~~
+
+1.  Create JSON File
+	
+		>		npm  i  -g  json-server
+		
+		
+		db_depts.json 
+		
+		{
+			"detps" :  [
+			{
+				"deptno" : 10,
+				"dname" : "Accounts",
+				"loc"  : "Hyd"
+			},
+			{
+				"deptno" : 10,
+				"dname" : "Accounts",
+				"loc"  : "Hyd"
+			}
+			{
+				"deptno" : 10,
+				"dname" : "Accounts",
+				"loc"  : "Hyd"
+			}
+			]			
+		}
+	
+2.  Start the JSON Server
+
+		json-server  --watch   --port  3500    db_depts.json   
+		json-server  --watch  --id  detpno  --port  3500    db_depts.json   
+
+3.  React Component
+
+		a.  Import axios 
+		b.  Implement ajax calls using axios methods
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DataServices.js
+~~~~~~~~~~~~~
+
+let dataServiceObj = {};
+
+dataServiceObj.getData = function()
+{
+	// code 
+};
+
+export default dataServiceObj;
+	
+	
+	
+	
+	
+Start the json server:
+	>  	json-server --watch --port 3500 --id deptno  db_depts.json
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
