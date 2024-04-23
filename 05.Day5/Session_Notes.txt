@@ -1,0 +1,211 @@
+State Management
+~~~~~~~~~~~~~~~~~
+
+What is prop drilling?
+ 
+Prop drilling occurs when data needs to be passed from a parent component to a deeply nested child component through intermediary components that do not directly use the data. This results in a cluttered component hierarchy and makes the code harder to maintain.
+
+ 
+Component Level
+~~~~~~~~~~~~~~~~
+			1.  Class Component 	---   state Object,  setState() 
+			2.  Functional Component  ---   useState()  ---   setUname(), setPwd()
+
+Parent-Child 
+~~~~~~~~~~~~
+	-->  Props concept used to sharing data between parent to child. 
+	
+				<dept-details   deptObj="item"  />
+
+
+Application Level 
+~~~~~~~~~~~~~~~
+		Why do we need to maintain the state at application level?
+		
+		-->  so that we can remove prop drilling too much
+		-->  sharing state across multiple components 
+		-->  modifications across multiple  components
+		
+		
+
+How to do we manage the state at application level?
+
+1.   useContext() hook 
+2.   Flux  
+3.   Redux 
+4.   Akita 	:	 		https://opensource.salesforce.com/akita/
+
+------------------------------------------------------------------------------------	
+
+
+
+Working with Redux
+~~~~~~~~~~~~~~~~~
+
+
+https://redux.js.org/
+
+
+
+Key Players
+~~~~~~~~~~~
+1.  Store 	-----  to handle / hold  the data globally
+2. Actions ----	operations that you can perform on the state 
+							Eg:  Banking Applications :   deposit, withdraw 			
+						1. action type 
+							2. data reflects that actions
+							
+3.  Reducers -------		mapping actions with corresponding logic (functionality)
+
+				
+
+
+
+Setup the environment for Redux
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Packages need to install :
+	1 . 	"redux": "^4.2.1"
+	2.    "react-redux": "^8.1.3"
+	3.    "@reduxjs/toolkit": "^1.9.7"
+---------------------------------------------------------------------
+Application Folder Structure:
+	
+	[src]
+		--->    [store]
+						bankStore.js
+		--->  	[components]
+							---->  login.js
+							---->   empsList.js
+							---->  empDetails.js
+							etc.... 
+		-->     [services]								
+						---->	dataService.js
+										
+		app.js
+		index.js
+
+
+Files required for each component
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		a.  login.js
+		b.  login.css
+		c.   login.test.js   	--- unit test cases 
+		
+		
+		
+	--------------------------------------------------------------	
+	[src]
+		--->    [store]
+						bankStore.js
+		--->  	[components]
+							---  [login]
+										login.js
+										login.css
+										login.test.js
+							---   [empsList]			
+										 empsList.js	
+										 empsList.css	
+										 empsList.test.js
+										 
+--------------------------------------------------------------------------										 
+										
+ 
+Implementation
+~~~~~~~~~~~~~~
+
+1.   store/bankStore.js
+
+	a.   create reducer function 
+		
+			reducer function arguments :	
+						1.  state
+						2.  action object  ---   type and data properties 
+			
+			function bankReducer(state, action) => 
+			{
+					action.type = action.type.toUpperCase();    
+
+					switch(action.type)
+					{
+							case "CREATE" :  			 
+										return {balance: 0};  
+										
+							case "DEPOSIT" :  		
+										return {  balance : state.balance + parseFloat(action.amount)};					
+							case "WITHDRAW" :  	
+								  if(state.balance < parseFloat(action.amount))  
+								{
+									alert("Insufficient Fund");
+									return {balance: state.balance};
+								}
+								else
+								{
+								   return { balance : state.balance - parseFloat(action.amount)};
+								}							
+					}						
+			}
+	
+	
+	
+	b.  create  a store    
+
+			import { legacy_createStore as createStore } from 'redux';
+			
+			syntax:   const bankStore = createStore(reducer_function_callback);
+			Eg:   	    const bankStore = createStore(bankReducer);
+	
+	c.   Export  store object 	
+			export default   bankStore;
+	
+
+
+2.  index.js     ---  configure the store with create action and provide it for the entire  application  using <Provider />
+
+	Note:   The only way to change the data in the store is to call dispatch() on it.
+
+	
+		import bankStore from './Stores/BankStore';
+		import { Provider } from 'react-redux';
+		
+		bankStore.dispatch({type:"CREATE"});
+		
+		 <Provider store={bankStore}>
+					<App  />
+		</Provider>  
+		
+	
+	
+3.   Component (BankApp.js)	
+			--  used perform the operations using store by dispatching the actions 
+
+			import { useSelector, useDispatch } from "react-redux";
+				
+			
+		    let currentBalance = useSelector((state) => state.balance);
+			
+			<h1>Your balance is ${(currentBalance).toFixed(2)}</h1>
+
+	
+
+
+			   
+			    
+				const dispatch = useDispatch();				
+				 const [amountValue, setAmount] = useState(0);   
+				
+			   function withdraw_click()
+			   {
+					  dispatch({type:"WITHDRAW", amount:amountValue} );
+			   }
+
+			  <input type="text" placeholder="Enter Ammount" value={amountValue}  name="amount" onChange={(e) => setAmount(e.target.value)} />
+			<button onClick={withdraw_click}>Withdraw</button>
+
+	
+
+Note:
+1.   useSelector() hook
+		A hook to access the redux store's state. This hook takes a selector function as an argument. The selector is called with the store state.
+	
+2.   useDispatch()  hook	
+		A hook to access the redux dispatch function.
