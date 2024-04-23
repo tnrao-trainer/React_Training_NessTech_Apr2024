@@ -1,0 +1,2 @@
+1.  Recreate the Banking applications from scratch using React-Redux
+2.  Study the useContext() hook and Refer the given example
