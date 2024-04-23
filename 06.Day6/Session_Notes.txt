@@ -1,0 +1,163 @@
+Routing in React JS
+~~~~~~~~~~~~~~~~~~~~
+
+Web Applications
+	-->	Page based application model 	:   *.html, *.jsp, *.aspx, *.php, .........
+			
+			<a  href="Login.html">Login</a>
+	
+	-->	Component based application model 	: React , Angular , Vue, ...
+	
+			Invalid:	
+					<a  href="Login.js">Login</a>
+					<a  href="<Login />">Login</a>
+					
+-------------------------------------------------------------------------------
+
+	index.js	--->		app.js		--->		refers all rest of the components 
+	
+Note: The above model does not suitable for real-time apps. 
+---------------------------------------------------------------------------------
+SPA  :  Single Page Applications 
+
+			Base :		Partial page loading 
+			Loading the requested page without reloading the website/webpage. 
+--------------------------------------------------------------------------------	
+How to implement navigations in React?
+How do we load the components dynamically? 	
+	
+
+
+Solution :  Routing 
+
+
+
+	
+Configuring the routes 
+
+
+<Link  href="url">Text</Link>	----		Component
+ 
+	url 		----			component
+	
+	home 	----		<Home />
+	about 	----		<About />
+	contact 	----		<Contact />
+	.....
+	
+	
+Configuring the routes 
+	
+		
+
+npm  i  --save  react-router-dom
+
+
+
+
+
+Applying alternate row styles to table rows:	
+
+ var result = emps.map( (item, index) => 
+		  <tr className={ index % 2 == 0?"c2":"c3" } >
+				........
+		  </tr>
+  );
+
+
+
+
+
+
+
+
+
+
+
+Handling Route Parameters
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Steps
+~~~~~~
+1.  Prepare the Route with parameter
+		 <Route path="/Details/:id" element= { <Details />  }  /> 
+
+2.  Send the value as part of the url using <Link />
+		<Link    to={"/Details/" + item.empno}>Details</Link>
+
+3.  Reading the route parameter value in next component
+
+		Hint :  useParams  hook is required to read route parameter values. 
+
+--------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+ProtectedRoute.js
+~~~~~~~~~~~~~~~~
+
+
+		const userToken = sessionStorage.getItem('user-token');
+		
+        if (!userToken || userToken === 'undefined') {
+            setIsLoggedIn(false);                
+            return navigate('/Login');
+        }
+
+
+
+
+
+
+Reading QueryString Parameters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+import { useLocation, useNavigate } from "react-router-dom";
+
+--> useLocation() hook is used to get querystring information.  
+
+	    let location = useLocation();
+
+      const queryString = location.search; // returns the query string from the current url
+
+	 //  get the individual values of the specified key 
+	 // URLSearchParams is pre-defined to reading the values from querystring 
+       let strReturnUrl  =  new URLSearchParams(queryString).get('returnUrl');
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. Request for Emps urls
+2. Authenticated :		Verify the token,  Redirect to Emps
+	UnAuthenticated :		Redirect to Login
+	
+3.  Login:
+			a. valid :  Create token and store in sessionStorage
+							  Redirect to Emps
+			b. Error Message 
+			
+localStorage
+sessionStorage 
+
+
+
