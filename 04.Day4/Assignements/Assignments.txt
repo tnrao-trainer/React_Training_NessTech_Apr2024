@@ -1,0 +1,8 @@
+1. Create a Vehicle Registration Form using React JS. And perform the following validations:
+		a.  Owner Name  :    Required 
+		b.  Contact Number  :   10 digit number  (Use Regular Expression)
+		c.   Vehicle Model :    Required  
+		d.   Registration Number  :    TS09EA1234  (Sampel format, use Regular Expression)
+		e.   Vehicle Color  :     Required 
+		
+2.  Implement the above example using "React-hook-form" library.
